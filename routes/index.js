@@ -1,12 +1,16 @@
-const express = require('express');
+// routes/index.js
+const express = require("express");
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send("Hello World! from Home route 🎉");
+// Default route
+router.get("/", (req, res) => {
+  res.send("🚀 Welcome to Node App Home Route");
 });
 
-router.get('/about', (req, res) => {
-  res.send("This is About Page");
+// Health check route
+router.get("/health", (req, res) => {
+  res.json({ status: "ok", uptime: process.uptime() });
 });
 
 module.exports = router;
+

@@ -1,12 +1,21 @@
-const express = require('express');
+// routes/api.js
+const express = require("express");
 const router = express.Router();
 
-router.get('/status', (req, res) => {
-  res.json({ status: "ok", message: "API is working 🚀" });
+// Default API route (GET) - for browser testing
+router.get("/", (req, res) => {
+  res.send("🚀 API is working!");
 });
 
-router.post('/echo', (req, res) => {
-  res.json({ you_sent: req.body });
+// POST /api/submit route
+router.post("/submit", (req, res) => {
+  const { name, email } = req.body;
+  res.json({
+    message: "Data received successfully ✅",
+    name,
+    email,
+  });
 });
 
 module.exports = router;
+
