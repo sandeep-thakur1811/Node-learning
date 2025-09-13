@@ -5,22 +5,24 @@ const connectDB = require("./db");
 
 const app = express();
 
+// ✅ Set EJS as view engine
+app.set("view engine", "ejs");
+
 // ✅ Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ✅ Routes
-app.use("/", require("./routes/index"));   // Default routes
-app.use("/api", require("./routes/api"));  // API routes
+app.use("/", require("./routes/index"));   // Main routes
+app.use("/api", require("./routes/api"));  // (Optional) API routes
 
-// ✅ Connect Database
+// ✅ Connect to MongoDB
 connectDB();
 
-// ✅ Start Server
+// ✅ Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
 });
-app.set('view engine', 'ejs'); // Add this line
 

@@ -2,14 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Submission = require('../models/Submission');
 
-// Home Page
-router.get('/', (req,res)=> res.send('🏠 Home Page'));
+// 🏠 Home Page
+router.get('/', (req, res) => {
+  res.send('🏠 Home Page');
+});
 
-// About Page
-router.get('/about', (req,res)=> res.send('ℹ️ About Page'));
+// ℹ️ About Page
+router.get('/about', (req, res) => {
+  res.send('ℹ️ About Page');
+});
 
-// Save to DB
-router.post('/submit', async (req,res) => {
+// ✅ Save to DB (Form submission route)
+router.post('/submit', async (req, res) => {
   try {
     const { name, email } = req.body;
     const newSub = new Submission({ name, email });
@@ -20,7 +24,7 @@ router.post('/submit', async (req,res) => {
   }
 });
 
-// List all submissions (EJS)
+// ✅ Show all submissions in browser using EJS
 router.get('/submissions', async (req, res) => {
   try {
     const submissions = await Submission.find().sort({ createdAt: -1 });
